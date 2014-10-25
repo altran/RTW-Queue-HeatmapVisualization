@@ -47,9 +47,16 @@ public class QueuesResource {
     public Queue findQueues(@RequestParam(required = false) Long lastObservation) {
         log.trace("findQueues, lastObservation {}", lastObservation);
         long size = 2;
+        long currentObservation = 1;
         if (lastObservation != null) {
-            size = lastObservation +1;
+            if (lastObservation < 30) {
+                size = lastObservation +1;
+                currentObservation = lastObservation + 1;
+            } else {
+                size = 0;
+                currentObservation = 1;
+            }
         }
-        return new Queue("1",size);
+        return new Queue("1",size, currentObservation);
     }
 }
