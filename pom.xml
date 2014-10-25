@@ -3,7 +3,7 @@
 
     <groupId>com.altran.iot</groupId>
     <artifactId>RTW-Queue-HeatmapVisualization</artifactId>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.2.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>RTW-Queue-HeatmapVisualization</name>
