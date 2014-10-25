@@ -3,7 +3,7 @@
 
     <groupId>com.altran.iot</groupId>
     <artifactId>RTW-Queue-HeatmapVisualization</artifactId>
-    <version>0.1</version>
+    <version>0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>RTW-Queue-HeatmapVisualization</name>
@@ -43,7 +43,7 @@
         <developerConnection>scm:git:ssh://git@github.com/altran/RTW-Queue-HeatmapVisualization.git</developerConnection>
         <connection>scm:git:https://github.com/altran/RTW-Queue-HeatmapVisualization.git</connection>
         <url>https://github.com/altran/RTW-Queue-HeatmapVisualization.git</url>
-      <tag>RTW-Queue-HeatmapVisualization-0.1</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <repositories>
