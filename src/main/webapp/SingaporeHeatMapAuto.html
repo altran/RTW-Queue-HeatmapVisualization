@@ -39,7 +39,7 @@
         var palawanBeach = {location: palawanBeachLoc, weight: 0.5};
         var silisioBeach = {location: silisioBeachLoc, weight: 0.5};
         var lastObservation = 0;
-        $.getJSON('/iot/queues?lastObservation=' +lastObservation, function(data) {
+        $.getJSON('./iot/queues?lastObservation=' +lastObservation, function(data) {
 
             console.log(data);
             sentosaBridge.weight = data.size;
@@ -79,7 +79,7 @@
         }
 
         function updateQueues() {
-            $.getJSON('/iot/queues?lastObservation=' +lastObservation, function(data) {
+            $.getJSON('./iot/queues?lastObservation=' +lastObservation, function(data) {
 
                 console.log(data);
                 sentosaBridge.weight = data.size;
