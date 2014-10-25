@@ -45,7 +45,7 @@ public class QueuesResource {
 
     @RequestMapping(value = "/queues", method = RequestMethod.GET)
     public Queue findQueues(@RequestParam(required = false) Long lastObservation) {
-        log.trace("findQueues, lastObservation {}", lastObservation);
+        //log.trace("findQueues, lastObservation {}", lastObservation);
         long size = 2;
         long currentObservation = 1;
         if (lastObservation != null) {
@@ -57,6 +57,20 @@ public class QueuesResource {
                 currentObservation = 1;
             }
         }
+        return new Queue("1",size, currentObservation);
+    }
+    @RequestMapping(value = "/queuesLive", method = RequestMethod.GET)
+    public Queue findQueuesLive(@RequestParam(required = false) Long lastObservation) {
+        //log.trace("findQueues, lastObservation {}", lastObservation);
+        long size = 2;
+
+        long currentObservation = 1 ;
+        if (lastObservation != null) {
+            currentObservation = lastObservation +1;
+        }
+
+        //TODO - Proxy to Live RTW
+
         return new Queue("1",size, currentObservation);
     }
 }
