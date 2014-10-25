@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Auto Sensor-Visualization. Queues in Singapore</title>
     <style type="text/css">
         html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
     </style>
@@ -26,37 +27,42 @@
     <script>
 
         var map, pointarray, heatmap;
-        var santosaLoc = new google.maps.LatLng(1.260535, 103.823860);
-        var santosa2 = {location: santosaLoc, weight: 0.5};
+        var singapore = new google.maps.LatLng(1.290270, 103.851959);
+        var centerOfMap = new google.maps.LatLng(1.297112, 103.827178);
+        var orchardRdLoc = new google.maps.LatLng(1.301430, 103.838566);
+        var civic = {location: new google.maps.LatLng(1.290976, 103.851950), weight: 2};
+        var sentosaBrigeLoc = new google.maps.LatLng(1.260535, 103.823860);
+        var palawanBeachLoc = new google.maps.LatLng(1.249748, 103.820754);
+        var silisioBeachLoc = new google.maps.LatLng(1.252516, 103.815669);
+        var orchardRd = {location: orchardRdLoc, weight: 1};
+        var sentosaBridge = {location: sentosaBrigeLoc, weight: 0.5};
+        var palawanBeach = {location: palawanBeachLoc, weight: 0.5};
+        var silisioBeach = {location: silisioBeachLoc, weight: 0.5};
         var lastObservation = 0;
         $.getJSON('/iot/queues?lastObservation=' +lastObservation, function(data) {
 
             console.log(data);
-            santosa2.weight = data.size;
-            lastObservation = lastObservation +1;
+            sentosaBridge.weight = data.size;
+            lastObservation = data.lastObservation;
 
         });
 
-        var santosa = {location: santosaLoc, weight: 5};
+        // var santosa = {location: santosaLoc, weight: 5};
 
         /* Data points defined as a mixture of WeightedLocation and LatLng objects */
         var heatMapData = [
-            santosa,
-            new google.maps.LatLng(1.290270, 103.851959),
-            {location: new google.maps.LatLng(1.270535, 103.843860), weight: 2}
+            civic,orchardRd,sentosaBridge
         ];
         var heatMapData2 = [
-            santosa2,
-            new google.maps.LatLng(1.290270, 103.851959),
-            {location: new google.maps.LatLng(1.270535, 103.843860), weight: 2}
+            civic,orchardRd,sentosaBridge,palawanBeach,silisioBeach
         ];
 
-        var singapore = new google.maps.LatLng(1.290270, 103.851959);
+
 
         function initialize() {
             var mapOptions = {
                 zoom: 13,
-                center: singapore,
+                center: sentosaBrigeLoc,
                 mapTypeId: google.maps.MapTypeId.SATELLITE
             };
 
@@ -76,13 +82,21 @@
             $.getJSON('/iot/queues?lastObservation=' +lastObservation, function(data) {
 
                 console.log(data);
-                santosa2.weight = data.size;
-                lastObservation = lastObservation +1;
+                sentosaBridge.weight = data.size;
+                silisioBeach.weight = (data.size * 2);
+                palawanBeach.weight = (data.size /2);
+                lastObservation = data.lastObservation;
+
 
             });
-           // santosa.weight=1;
+            // santosa.weight=1;
             heatmap.setMap(null);
-            heatmap.data=new google.maps.MVCArray(heatMapData2);
+            if (lastObservation == 1) {
+                heatmap.data=new google.maps.MVCArray(heatMapData);
+            } else {
+                heatmap.data=new google.maps.MVCArray(heatMapData2);
+            }
+
             heatmap.setMap(map);
             //heatmap.setMap(heatmap.getMap() ? null : map);
         }
