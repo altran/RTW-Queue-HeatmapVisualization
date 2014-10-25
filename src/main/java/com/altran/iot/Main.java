@@ -29,7 +29,7 @@ import java.util.logging.LogManager;
 
 public class Main {
 
-    public static final String CONTEXT_PATH = "/iot/";
+    public static final String CONTEXT_PATH = "/";
     private static final Logger log = LoggerFactory.getLogger(Main.class);
 
     private Server server;

@@ -10,19 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.GET;
-import javax.ws.rs.Produces;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.util.Properties;
 
 /**
  * @author <a href="mailto:bard.lind@gmail.com">Bard Lind</a>
  */
-@RequestMapping("/")
 @RestController
 public class QueuesResource {
     private static final Logger log = LoggerFactory.getLogger(QueuesResource.class);
@@ -49,9 +45,7 @@ public class QueuesResource {
     }
     */
 
-    @GET
-    @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
-    @RequestMapping(value = "queues", method = RequestMethod.GET)
+    @RequestMapping(value = "/queues", method = RequestMethod.GET)
     public Queue findQueues( HttpServletRequest request, HttpServletResponse response, Model model) {
         log.trace("findQueues");
         return new Queue("1",2);
