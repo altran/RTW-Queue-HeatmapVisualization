@@ -21,13 +21,24 @@
             border: 1px solid #999;
         }
     </style>
-    <!--<script src="http://code.jquery.com/jquery.js"></script>-->
+    <script src="http://code.jquery.com/jquery.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=visualization"></script>
     <script>
+
         var map, pointarray, heatmap;
         var santosaLoc = new google.maps.LatLng(1.260535, 103.823860);
+        var santosa2 = {location: santosaLoc, weight: 0.5};
+        var lastObservation = 0;
+        $.getJSON('/iot/queues?lastObservation=' +lastObservation, function(data) {
+
+            console.log(data);
+            santosa2.weight = data.size;
+            lastObservation = lastObservation +1;
+
+        });
+
         var santosa = {location: santosaLoc, weight: 5};
-        var santosa2 = {location: santosaLoc, weight: 1};
+
         /* Data points defined as a mixture of WeightedLocation and LatLng objects */
         var heatMapData = [
             santosa,
@@ -61,8 +72,15 @@
             heatmap.setMap(map);
         }
 
-        function toggleHeatmap() {
-            santosa.weight=1;
+        function updateQueues() {
+            $.getJSON('/iot/queues?lastObservation=' +lastObservation, function(data) {
+
+                console.log(data);
+                santosa2.weight = data.size;
+                lastObservation = lastObservation +1;
+
+            });
+            // santosa.weight=1;
             heatmap.setMap(null);
             heatmap.data=new google.maps.MVCArray(heatMapData2);
             heatmap.setMap(map);
@@ -104,7 +122,7 @@
 
 <body>
 <div id="panel">
-    <button onclick="toggleHeatmap()">Toggle Heatmap</button>
+    <button onclick="updateQueues()">Update queues</button>
     <button onclick="changeGradient()">Change gradient</button>
     <button onclick="changeRadius()">Change radius</button>
     <button onclick="changeOpacity()">Change opacity</button>
