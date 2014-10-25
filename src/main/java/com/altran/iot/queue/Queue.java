@@ -6,14 +6,14 @@ package com.altran.iot.queue;
 public class Queue {
 
     private final String id;
-    private final int size;
+    private final long size;
 
-    public Queue(String id, int size) {
+    public Queue(String id, long size) {
         this.id = id;
         this.size = size;
     }
 
-    public int getSize() {
+    public long getSize() {
         return size;
     }
 
