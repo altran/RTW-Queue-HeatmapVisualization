@@ -24,8 +24,8 @@
 
         <property name="locations">
             <list>
-                <value>classpath:IoT-service.properties</value>
-                <value>file:config_override/IoT-service.properties</value>
+                <value>classpath:rtw-queue.properties</value>
+                <value>file:config_override/rtw-queue.properties</value>
             </list>
         </property>
     </bean>

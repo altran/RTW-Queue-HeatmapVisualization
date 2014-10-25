@@ -1,7 +1,7 @@
 <configuration scan="true" scanPeriod="60 seconds">
-    <property name="LOG_DIR" value="../IoT-service_logs/" />
-    <property name="env" value="IoT-service-noEnvSet" />
-    <property name="appName" value="IoT-service" />
+    <property name="LOG_DIR" value="../RTW-queue-visualization_logs/" />
+    <property name="env" value="RTW-queue-visualization-noEnvSet" />
+    <property name="appName" value="RTW-queue-visualization" />
     <!--<property name="AUDIT_LOG_DIR" value="logs/audit" />-->
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -11,9 +11,9 @@
     </appender>
 
     <appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_DIR}/IoT-service.log</file>
+        <file>${LOG_DIR}/RTW-queue-visualization.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_DIR}/IoT-service-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>${LOG_DIR}/RTW-queue-visualization-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>30</maxHistory>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>50MB</maxFileSize>
